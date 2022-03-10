@@ -27,6 +27,7 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.11")
 //    implementation("me.tongfei:progressbar:0.9.3")
+    implementation("info.picocli:picocli:4.6.3")
 }
 
 tasks.test {
@@ -50,5 +51,5 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
 }
 
 application {
-    mainClass.set("me.sagiri.minecraft.ero.Main")
+    mainClass.set("me.sagiri.minecraft.ero.MainKt")
 }
