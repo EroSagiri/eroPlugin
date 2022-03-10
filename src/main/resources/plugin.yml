@@ -1,0 +1,21 @@
+name : ero
+main : me.sagiri.minecraft.ero.EroPlugin
+api-version: 1.18
+version: 1.0.0
+description: Ero
+load: POSTWORLD
+author: sagiri
+website: https://github.com
+prefix: ero
+commands:
+  get:
+    description: get a ero picture
+    aliases:
+      - 色图
+      - 涩图
+    permission: ero.base
+    permission-message: You do not have permission to use this command.
+    usage: "Usage: /get"
+permissions:
+  ero.base:
+    default: true
