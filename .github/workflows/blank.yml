@@ -42,7 +42,7 @@ jobs:
         run: chmod +x ./gradlew
         
       - name: Make plugin
-        run: ./gradlew buildPlugin
+        run: ./gradlew build
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.0.0
