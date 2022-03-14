@@ -11,11 +11,12 @@ import org.slf4j.LoggerFactory
 import picocli.CommandLine
 import java.io.File
 import java.lang.Runnable
+import java.util.regex.Pattern
 import kotlin.system.exitProcess
 
 @CommandLine.Command(name = "ero", mixinStandardHelpOptions = true, version = ["1.0.0"], description = ["从LOLIAPI下载图片"])
 class Main : Runnable {
-    @CommandLine.Option(names = ["r18", "R18", "-R18", "-r18"], description = ["不可以涩涩"])
+    @CommandLine.Option(names = ["r18", "R18", "-R18", "-r18", "-r"], description = ["不可以涩涩"])
     var r18 = false
     @CommandLine.Option(names = ["num", "-num", "-n"], description = ["获取图片的数量"])
     var num = 4
@@ -48,13 +49,18 @@ class Main : Runnable {
 
                 loliappResponse.data.forEach { image ->
                     val job = EroScope.launch {
+                        var imageFormat = "png"
+                        val matcher = Pattern.compile("\\.(\\w+?)$").matcher(image.url)
+                        if(matcher.find()) {
+                            imageFormat = matcher.group(1)
+                        }
                         val httpRequest = EroHttp.client.get<HttpResponse>(image.url)
                         if (httpRequest.status == HttpStatusCode.OK) {
-                            val imageFile = File("${image.pid}.png")
+                            val imageFile = File("${image.pid}.${imageFormat}")
                             imageFile.writeBytes(httpRequest.readBytes())
-                            logger.info("Downloaded ${image.title} ${image.p}")
+                            logger.info("Downloaded ${image.pid} ${image.title}")
                         } else {
-                            logger.error("download pid ${image.pid} Failed")
+                            logger.error("download pid ${image.pid} ${image.title} Failed Code ${httpRequest.status.value}")
                         }
                     }
                     downloadJub.add(job)
