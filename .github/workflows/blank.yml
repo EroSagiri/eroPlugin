@@ -31,10 +31,15 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+      - name: java test
+        run: java -version
 
           
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1.0.4
+        
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
         
       - name: Make plugin
         run: ./gradlew buildPlugin
