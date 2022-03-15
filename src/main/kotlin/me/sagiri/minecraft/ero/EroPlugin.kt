@@ -2,13 +2,9 @@ package me.sagiri.minecraft.ero
 
 import kotlinx.coroutines.launch
 import me.sagiri.minecraft.ero.loliapp.LoliApp
-import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import org.bukkit.entity.Player
-import org.bukkit.event.*
-import org.bukkit.event.player.PlayerEvent
 import org.bukkit.plugin.java.JavaPlugin
 
 class EroPlugin : JavaPlugin()  {
@@ -33,16 +29,23 @@ class EroPlugin : JavaPlugin()  {
     }
 }
 
-class EroCommandExecutor : CommandExecutor {
-    var eroPlugin: EroPlugin
+class EroCommandExecutor(var eroPlugin: EroPlugin) : CommandExecutor {
 
-    constructor(eroPlugin: EroPlugin) {
-        this.eroPlugin = eroPlugin
-    }
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         EroScope.launch {
-            val url = LoliApp.get(if (eroPlugin.config.getBoolean("r18")) 2 else 1)!!.data[0].url
-            sender.sendMessage(url)
+            val response = LoliApp.get(if (eroPlugin.config.getBoolean("r18")) 2 else 1)
+            if (response != null && response.data.isNotEmpty()) {
+                val imageData = response.data[0]
+                sender.sendMessage("""
+                    title:  ${imageData.title}
+                    author: ${imageData.author}
+                    pid:    ${imageData.pid}
+                    tag:    ${imageData.tags.joinToString()}
+                    url:    ${imageData.url}
+                """.trimIndent())
+            } else {
+                sender.sendMessage("获取图片失败了")
+            }
         }
         return true
     }
