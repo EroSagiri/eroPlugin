@@ -4,6 +4,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.coroutines.*
+import me.sagiri.minecraft.ero.gui.eroGui
 import me.sagiri.minecraft.ero.loliapp.LoliApp
 import me.sagiri.minecraft.ero.loliapp.Size
 import org.slf4j.Logger
@@ -36,6 +37,8 @@ class Main : Runnable {
     var dateBefore : Int? = null
     @CommandLine.Option(names = ["dsc", "-dsc", "-d"], description = ["设置为任意真值以禁用对某些缩写keyword和tag的自动转换"])
     var dsc : Boolean = false
+    @CommandLine.Option(names = ["-g", "-gui", "--gui"])
+    var isGui : Boolean = false
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger("Ero")
@@ -43,34 +46,49 @@ class Main : Runnable {
 
     override fun run() {
         runBlocking {
-            val loliappResponse = LoliApp.get(r18 = if (r18) 1 else 0, num = num, uid = uid, keyword = keyword, tag = tags, size = size, proxy = proxy, dataAfter = dataAfter, dateBefore = dateBefore, dsc = dsc)
-            if (loliappResponse != null) {
-                val downloadJub = mutableListOf<Job>()
-
-                loliappResponse.data.forEach { image ->
-                    val job = EroScope.launch {
-                        var imageFormat = "png"
-                        val matcher = Pattern.compile("\\.(\\w+?)$").matcher(image.url)
-                        if(matcher.find()) {
-                            imageFormat = matcher.group(1)
-                        }
-                        val httpRequest = EroHttp.client.get<HttpResponse>(image.url)
-                        if (httpRequest.status == HttpStatusCode.OK) {
-                            val imageFile = File("${image.pid}.${imageFormat}")
-                            imageFile.writeBytes(httpRequest.readBytes())
-                            logger.info("Downloaded ${image.pid} ${image.title}")
-                        } else {
-                            logger.error("download pid ${image.pid} ${image.title} Failed Code ${httpRequest.status.value}")
-                        }
-                    }
-                    downloadJub.add(job)
-                }
-
-                downloadJub.map { job ->
-                    job.join()
-                }
+            if(isGui) {
+                eroGui(r18 = r18)
             } else {
-                logger.error("loliapp API 返回的是空的")
+                val loliappResponse = LoliApp.get(
+                    r18 = if (r18) 1 else 0,
+                    num = num,
+                    uid = uid,
+                    keyword = keyword,
+                    tag = tags,
+                    size = size,
+                    proxy = proxy,
+                    dataAfter = dataAfter,
+                    dateBefore = dateBefore,
+                    dsc = dsc
+                )
+                if (loliappResponse != null) {
+                    val downloadJub = mutableListOf<Job>()
+
+                    loliappResponse.data.forEach { image ->
+                        val job = EroScope.launch {
+                            var imageFormat = "png"
+                            val matcher = Pattern.compile("\\.(\\w+?)$").matcher(image.url)
+                            if (matcher.find()) {
+                                imageFormat = matcher.group(1)
+                            }
+                            val httpRequest = EroHttp.client.get<HttpResponse>(image.url)
+                            if (httpRequest.status == HttpStatusCode.OK) {
+                                val imageFile = File("${image.pid}.${imageFormat}")
+                                imageFile.writeBytes(httpRequest.readBytes())
+                                logger.info("Downloaded ${image.pid} ${image.title}")
+                            } else {
+                                logger.error("download pid ${image.pid} ${image.title} Failed Code ${httpRequest.status.value}")
+                            }
+                        }
+                        downloadJub.add(job)
+                    }
+
+                    downloadJub.map { job ->
+                        job.join()
+                    }
+                } else {
+                    logger.error("loliapp API 返回的是空的")
+                }
             }
         }
     }

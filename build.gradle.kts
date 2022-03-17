@@ -5,6 +5,7 @@ plugins {
     application
     id("com.github.johnrengelman.shadow") version "7.1.2"
     kotlin("plugin.serialization") version "1.6.10"
+    id("org.jetbrains.compose") version "1.1.0"
 }
 
 group = "me.sagiri"
@@ -28,6 +29,10 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.11")
 //    implementation("me.tongfei:progressbar:0.9.3")
     implementation("info.picocli:picocli:4.6.3")
+
+    implementation(compose.desktop.currentOs)
+    implementation(compose.ui)
+    implementation(compose.foundation)
 }
 
 tasks.test {
