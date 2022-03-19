@@ -31,8 +31,8 @@ dependencies {
     implementation("info.picocli:picocli:4.6.3")
 
     implementation(compose.desktop.currentOs)
+    implementation(compose.desktop.common)
     implementation(compose.ui)
-    implementation(compose.foundation)
 }
 
 tasks.test {
