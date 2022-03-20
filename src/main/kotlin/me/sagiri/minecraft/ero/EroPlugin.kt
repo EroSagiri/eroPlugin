@@ -16,7 +16,7 @@ class EroPlugin : JavaPlugin()  {
         super.onLoad()
         config.addDefault("r18", false)
         config.options().copyDefaults()
-        saveConfig()
+        saveDefaultConfig()
     }
 
     override fun onEnable() {
@@ -33,7 +33,7 @@ class EroCommandExecutor(var eroPlugin: EroPlugin) : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         EroScope.launch {
-            val response = LoliApp.get(if (eroPlugin.config.getBoolean("r18")) 2 else 1)
+            val response = LoliApp.get(if (eroPlugin.config.getBoolean("r18")) 1 else 0)
             if (response != null && response.data.isNotEmpty()) {
                 val imageData = response.data[0]
                 sender.sendMessage("""
