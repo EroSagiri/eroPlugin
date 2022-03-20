@@ -59,7 +59,7 @@ object LoliApp {
      * @param dateBefore 返回在这个时间及以前上传的作品；时间戳，单位为毫秒
      * @param dsc 设置为任意真值以禁用对某些缩写keyword和tag的自动转换
      */
-    suspend fun get(r18 : Int = 0, num : Int = 1, uid : Array<Int>? = null, keyword : String? = null, tag : Array<String>? = null, size : Array<Size> = arrayOf(Size.original), proxy : String = "i.pixiv.re", dataAfter : Int? = null, dateBefore : Int? = null, dsc : Boolean = false): LoliappResponse? {
+    suspend fun get(r18 : Int = 0, num : Int = 1, uid : Array<Int>? = null, keyword : String? = null, tag : Array<String>? = null, size : Array<Size> = arrayOf(Size.original), proxy : String? = "i.pixiv.re", dataAfter : Int? = null, dateBefore : Int? = null, dsc : Boolean = false): LoliappResponse? {
         val response = EroHttp.client.get<HttpResponse>(LOLIAPPAPIURL) {
             parameter("r18", r18)
             parameter("num", num)
@@ -71,7 +71,9 @@ object LoliApp {
                 parameter("tag", tag.joinToString(separator = "|"))
             }
             parameter("size", size.joinToString(separator = "|"))
-            parameter("proxy", proxy)
+            if(proxy != null) {
+                parameter("proxy", proxy)
+            }
             parameter("dataAfter", dataAfter)
             parameter("dataBefore", dateBefore)
             parameter("dsc", dsc)

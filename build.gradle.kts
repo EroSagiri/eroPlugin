@@ -33,6 +33,7 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.desktop.common)
     implementation(compose.ui)
+    implementation(compose.animation)
 }
 
 tasks.test {
