@@ -15,7 +15,7 @@ commands:
       - 涩图
     permission: ero.base
     permission-message: You do not have permission to use this command.
-    usage: "Usage: /get"
+    usage: "Usage: /get [tag1,tag2,tag3]"
 permissions:
   ero.base:
     default: true

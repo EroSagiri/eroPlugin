@@ -33,7 +33,10 @@ class EroCommandExecutor(var eroPlugin: EroPlugin) : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         EroScope.launch {
-            val response = LoliApp.get(if (eroPlugin.config.getBoolean("r18")) 1 else 0)
+            val response = LoliApp.get(
+                r18 = if (eroPlugin.config.getBoolean("r18")) 1 else 0,
+                tag = if (args.isNotEmpty()) args[0].split(",").toTypedArray() else null
+            )
             if (response != null && response.data.isNotEmpty()) {
                 val imageData = response.data[0]
                 sender.sendMessage("""

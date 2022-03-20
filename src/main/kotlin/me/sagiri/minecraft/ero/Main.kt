@@ -95,8 +95,12 @@ class Main : Runnable {
 }
 
 fun main(args: Array<String>) {
-    val main = Main()
+    if(args.size > 1) {
+        val main = Main()
 
-    val status = CommandLine(main).execute(*args)
-    exitProcess(status)
+        val status = CommandLine(main).execute(*args)
+        exitProcess(status)
+    } else {
+        eroGui()
+    }
 }
