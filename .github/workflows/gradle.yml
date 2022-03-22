@@ -31,12 +31,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
       - name: java test
         run: java -version
 
-          
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.4
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
         
       - name: Make gradlew executable
         run: chmod +x ./gradlew
@@ -48,5 +48,5 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: Plugin
-          path: ${{ github.workspace }}/build/libs/*.jar
+          path: ${{ github.workspace }}/build/libs/*all.jar
             
