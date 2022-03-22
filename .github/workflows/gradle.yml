@@ -37,10 +37,12 @@ jobs:
         
       - name: Build with Gradle
         run: gradle build
+
+      - name: Run Test
+        run: java -jar ${{ github.workspace }}/build/libs/*all.jar
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: Plugin
           path: ${{ github.workspace }}/build/libs/*all.jar
-            

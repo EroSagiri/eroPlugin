@@ -10,6 +10,7 @@ import me.sagiri.minecraft.ero.loliapp.Size
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import picocli.CommandLine
+import java.awt.GraphicsEnvironment
 import java.io.File
 import java.lang.Runnable
 import java.util.regex.Pattern
@@ -95,7 +96,7 @@ class Main : Runnable {
 }
 
 fun main(args: Array<String>) {
-    if(args.size > 1) {
+    if(GraphicsEnvironment.isHeadless()) {
         val main = Main()
 
         val status = CommandLine(main).execute(*args)
