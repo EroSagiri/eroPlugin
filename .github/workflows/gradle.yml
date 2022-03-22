@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Gradle Build
 
 # Controls when the workflow will run
 on:
@@ -35,14 +35,8 @@ jobs:
       - name: Java Test
         run: java -version
         
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.4
-        
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-        
-      - name: Make plugin
-        run: ./gradlew build
+      - name: Build with Gradle
+        run: gradle build
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.0.0
