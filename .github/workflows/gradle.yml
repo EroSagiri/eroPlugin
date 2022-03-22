@@ -30,13 +30,13 @@ jobs:
         uses: actions/setup-java@v3.0.0
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
 
-      - name: java test
+      - name: Java Test
         run: java -version
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
         
       - name: Make gradlew executable
         run: chmod +x ./gradlew
