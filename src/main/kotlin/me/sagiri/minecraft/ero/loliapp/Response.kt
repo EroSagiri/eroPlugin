@@ -68,7 +68,9 @@ object LoliApp {
             }
             parameter("keyword", keyword)
             if (tag != null) {
-                parameter("tag", tag.joinToString(separator = "|"))
+                tag.forEach { t ->
+                    parameter("tag", t)
+                }
             }
             parameter("size", size.joinToString(separator = "|"))
             if(proxy != null) {
