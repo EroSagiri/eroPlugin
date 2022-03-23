@@ -35,7 +35,7 @@ class EroCommandExecutor(var eroPlugin: EroPlugin) : CommandExecutor {
         EroScope.launch {
             val response = LoliApp.get(
                 r18 = if (eroPlugin.config.getBoolean("r18")) 1 else 0,
-                tag = if (args.isNotEmpty()) args[0].split(",").toTypedArray() else null
+                tag = if (args.isNotEmpty()) args.toList().toTypedArray() else null
             )
             if (response != null && response.data.isNotEmpty()) {
                 val imageData = response.data[0]
