@@ -17,12 +17,13 @@ repositories {
 }
 
 dependencies {
-    val ktorVersion = "1.6.7"
+    val ktorVersion = "1.6.8"
     testImplementation(kotlin("test"))
     compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
 //    implementation("io.ktor:ktor-client-apache:$ktorVersion")
     implementation("io.ktor:ktor-client-java:$ktorVersion")
+    implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
 //    implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-serialization:$ktorVersion")
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
