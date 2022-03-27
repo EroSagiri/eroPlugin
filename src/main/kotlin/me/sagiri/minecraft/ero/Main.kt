@@ -96,7 +96,7 @@ class Main : Runnable {
 }
 
 fun main(args: Array<String>) {
-    if(GraphicsEnvironment.isHeadless()) {
+    if(GraphicsEnvironment.isHeadless() && args.isNotEmpty()) {
         val main = Main()
 
         val status = CommandLine(main).execute(*args)
