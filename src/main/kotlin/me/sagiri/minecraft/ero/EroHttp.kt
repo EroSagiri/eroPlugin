@@ -25,7 +25,9 @@ object EroHttp {
              level = LogLevel.NONE
          }
 
-         install(HttpTimeout)
+         install(HttpTimeout) {
+             
+         }
     }
 }
 
