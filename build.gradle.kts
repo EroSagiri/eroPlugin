@@ -6,7 +6,7 @@ buildscript {
     }
 }
 
-group = "com.rocsss.avp"
+group = "me.sagiri"
 version = "1.0"
 
 allprojects {
