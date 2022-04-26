@@ -5,4 +5,5 @@
 /plugin/build/
 /android/build/
 /common/build/
+/desktop/build/
 /*.png
