@@ -1,3 +1,27 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+group = "com.rocsss.avp"
+version = "1.0"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+}
+
+plugins {
+
+}
+
+/*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -53,3 +77,4 @@ java {
 application {
     mainClass.set("me.sagiri.minecraft.ero.MainKt")
 }
+ */

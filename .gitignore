@@ -1,4 +1,6 @@
 # Project exclude paths
 /.gradle/
 /build/
+/loliapi/build/
+/plugin/build/
 /*.png
