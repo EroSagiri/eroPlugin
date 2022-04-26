@@ -1,9 +1,6 @@
 package me.sagiri.loliapi
 
-import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
-import kotlin.random.Random
-
+/*
 class LoliApiTest {
     @Test
     fun get() {
@@ -30,3 +27,4 @@ class LoliApiTest {
         }
     }
 }
+ */
