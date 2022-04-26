@@ -39,7 +39,7 @@ jobs:
         run: gradle build
 
       - name: plugin shadowJar
-          run: gradle plugin:shadowJar
+        run: gradle plugin:shadowJar
 
       - name: Upload a Build Plugin
         uses: actions/upload-artifact@v3.0.0
