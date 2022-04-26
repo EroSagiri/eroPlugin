@@ -22,6 +22,8 @@ dependencies {
     implementation(compose.materialIconsExtended)
     implementation(compose.animation)
 
+    implementation(project(":common"))
+
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     testImplementation("androidx.test:core:1.4.0")

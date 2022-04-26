@@ -19,3 +19,4 @@ rootProject.name = "ero"
 include("loliapi")
 include("plugin")
 include(":android")
+include("common")

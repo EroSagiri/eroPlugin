@@ -3,4 +3,6 @@
 /build/
 /loliapi/build/
 /plugin/build/
+/android/build/
+/common/build/
 /*.png
