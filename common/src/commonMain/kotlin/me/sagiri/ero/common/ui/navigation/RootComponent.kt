@@ -38,7 +38,7 @@ class RootComponent(
         }
     }
 
-    fun createScreenComponent(config: Config, componentContext: ComponentContext): Component {
+    private fun createScreenComponent(config: Config, componentContext: ComponentContext): Component {
         return when (config) {
             is Config.Main -> MainComponent(this)
             is Config.Number -> NumberComponent(this, config)
