@@ -21,6 +21,7 @@ dependencies {
     implementation(compose.material3)
     implementation(compose.materialIconsExtended)
     implementation(compose.animation)
+    implementation(compose.uiTooling)
 
     implementation(project(":common"))
 
@@ -38,8 +39,6 @@ dependencies {
     androidTestImplementation("androidx.test:core:1.4.0")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
-
-    debugImplementation(compose.uiTooling)
 }
 
 android {

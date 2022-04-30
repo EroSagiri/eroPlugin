@@ -1,20 +1,26 @@
 package me.sagiri.android
 
-import androidx.test.filters.SmallTest
-import androidx.test.runner.AndroidJUnit4
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-const val TEST_STRING = "This is a string"
-const val TEST_LONG = 12345678L
-
-// @RunWith is required only if you use a mix of JUnit3 and JUnit4.
 @RunWith(AndroidJUnit4::class)
-@SmallTest
-class LogHistoryAndroidUnitTest {
+class MyComposeTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
+    // use createAndroidComposeRule<YourActivity>() if you need access to
+    // an activity
+
     @Test
-    fun test() {
+    fun myTest() {
+        // Start the app
+        composeTestRule.setContent {
+
+        }
+
         assert(true)
     }
 }
-
