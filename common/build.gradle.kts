@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform") version "1.6.10"
     id("org.jetbrains.compose")
     id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.parcelize") version "1.6.10"
 }
 
 group = "me.sagiri"
