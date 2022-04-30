@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-group = "com.rocsss.avp"
+group = "me.sagiri"
 version = "1.0"
 
 kotlin {
@@ -57,18 +57,18 @@ compose.desktop {
         mainClass = "me.sagiri.ero.desktop.Application"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb, TargetFormat.AppImage)
-            packageName = "AVSManage"
+            packageName = "ero"
             packageVersion = "1.0.0"
 
             windows {
                 shortcut = true
-                menuGroup = "rocsss"
+                menuGroup = "sagiri"
                 menu = true
             }
 
             linux {
                 shortcut = true
-                menuGroup = "rocsss"
+                menuGroup = "sagiri"
             }
         }
     }
