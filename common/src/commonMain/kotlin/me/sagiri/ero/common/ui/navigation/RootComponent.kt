@@ -12,8 +12,8 @@ import com.arkivanov.decompose.router.router
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
+import me.sagiri.ero.common.me.sagiri.ero.common.ui.feature.number.NumberComponent
 import me.sagiri.ero.common.ui.feature.main.MainComponent
-import me.sagiri.ero.common.ui.feature.main.NumberComponent
 
 class RootComponent(
     private val componentContext: ComponentContext

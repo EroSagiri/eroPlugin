@@ -27,22 +27,31 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     testImplementation("androidx.test:core:1.4.0")
-    androidTestImplementation(kotlin("test"))
     testImplementation("junit:junit:4.+")
+
+    androidTestImplementation(kotlin("test"))
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("org.hamcrest:hamcrest-library:1.3")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
     androidTestImplementation(compose.uiTestJUnit4)
+    androidTestImplementation("androidx.test:core:1.4.0")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
+
     debugImplementation(compose.uiTooling)
 }
 
 android {
     setCompileSdkVersion(31)
     defaultConfig {
-        applicationId = "com.rocsss.avp.android"
+        applicationId = "me.sagiri.ero.android"
         minSdk = 24
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -62,4 +71,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
+    useLibrary("android.test.runner")
+    useLibrary("android.test.base")
+    useLibrary("android.test.mock")
 }
