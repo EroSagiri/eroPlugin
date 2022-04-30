@@ -73,33 +73,6 @@ compose.desktop {
         }
     }
 }
-/*
-@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-dependencies {
-    implementation(project(":common"))
-
-    implementation(compose.runtime)
-    implementation(compose.ui)
-    implementation(compose.material)
-    implementation(compose.material3)
-    implementation(compose.animation)
-    implementation(compose.foundation)
-    implementation(compose.preview)
-    implementation(compose.uiTooling)
-    implementation(compose.uiTestJUnit4)
-    implementation(compose.desktop.currentOs)
-    implementation(compose.desktop.common)
-
-    val decomposeVersion = "0.6.0"
-    implementation("com.arkivanov.decompose:decompose:$decomposeVersion")
-    implementation("com.arkivanov.decompose:extensions-compose-jetpack:$decomposeVersion")
-    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:$decomposeVersion")
-    implementation("com.arkivanov.decompose:extensions-android:$decomposeVersion")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-}
- */
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
