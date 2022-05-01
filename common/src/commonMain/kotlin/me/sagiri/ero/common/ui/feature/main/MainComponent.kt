@@ -18,6 +18,8 @@ import me.sagiri.ero.common.me.sagiri.ero.common.ui.feature.main.image.ImageData
 import me.sagiri.ero.common.me.sagiri.ero.common.ui.feature.main.image.PixivImage
 import me.sagiri.ero.common.ui.navigation.Component
 import me.sagiri.ero.common.ui.navigation.RootComponent
+import me.sagiri.loliapi.LoliApi
+import me.sagiri.loliapi.R18
 import java.util.logging.Logger
 
 class MainComponent(val rootComponent: RootComponent) : Component {
@@ -33,7 +35,16 @@ class MainComponent(val rootComponent: RootComponent) : Component {
     @Composable
     override fun render() {
         LaunchedEffect(Unit) {
-
+            val data = LoliApi.get(r18 = R18.yes, num = 10, tag = arrayOf("loli"))
+            if(data!=null) {
+                data.data.forEach {
+                    images.add(
+                        PixivImage().apply {
+                            url = it.url
+                        }
+                    )
+                }
+            }
         }
         Scaffold(
 

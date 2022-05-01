@@ -1,8 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform")
     id("org.jetbrains.compose")
     id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.parcelize") version "1.6.10"
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 group = "me.sagiri"
@@ -37,6 +37,8 @@ kotlin {
                 val multiplatformSettingsVersion = "0.8.1"
                 implementation("com.russhwolf:multiplatform-settings:${multiplatformSettingsVersion}")
                 implementation("com.russhwolf:multiplatform-settings-serialization:${multiplatformSettingsVersion}")
+
+                implementation(project(":loliapi"))
             }
         }
         val commonTest by getting {
@@ -49,6 +51,7 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.4.1")
                 api("androidx.core:core-ktx:1.7.0")
                 api(compose.animation)
+                implementation(project(":loliapi"))
             }
         }
         val androidTest by getting {

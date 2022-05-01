@@ -2,7 +2,7 @@ import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform")
     id("org.jetbrains.compose")
 }
 
@@ -76,26 +76,4 @@ compose.desktop {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
-}
-
-compose.desktop {
-    application {
-        mainClass = "me.sagiri.ero.desktop.Application"
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.Deb)
-            packageName = "ero"
-            packageVersion = "1.0.0"
-
-            windows {
-                shortcut = true
-                menuGroup = "sagiri"
-                menu = true
-            }
-
-            linux {
-                shortcut = true
-                menuGroup = "sagiri"
-            }
-        }
-    }
 }

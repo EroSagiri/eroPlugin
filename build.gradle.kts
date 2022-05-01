@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -18,9 +20,29 @@ allprojects {
 }
 
 plugins {
+    kotlin("jvm") apply false
+    kotlin("multiplatform") apply false
+    kotlin("android") apply false
     id("com.android.application") apply false
     id("com.android.library") apply false
-    //kotlin("multiplatform") apply false
+    id("org.jetbrains.compose") apply false
+    id("org.jetbrains.kotlin.plugin.parcelize") apply false
+    kotlin("plugin.serialization") apply false
+    id("com.github.johnrengelman.shadow") apply false
+}
+
+subprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+
+    plugins.withId("org.jetbrains.kotlin.multiplatform") {
+        tasks.withType<KotlinCompile> {
+            kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        }
+    }
 }
 
 /*
