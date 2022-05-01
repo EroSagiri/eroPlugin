@@ -38,6 +38,15 @@ kotlin {
                 implementation("com.russhwolf:multiplatform-settings:${multiplatformSettingsVersion}")
                 implementation("com.russhwolf:multiplatform-settings-serialization:${multiplatformSettingsVersion}")
 
+                val ktorVersion = "2.0.0"
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("ch.qos.logback:logback-classic:1.2.11")
+
                 implementation(project(":loliapi"))
             }
         }

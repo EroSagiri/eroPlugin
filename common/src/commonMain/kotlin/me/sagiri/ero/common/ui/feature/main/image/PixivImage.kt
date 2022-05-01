@@ -6,4 +6,5 @@ import androidx.compose.runtime.setValue
 
 class PixivImage : ImageData {
     override var url: String by mutableStateOf("")
+    override var pid : Long = 0
 }
